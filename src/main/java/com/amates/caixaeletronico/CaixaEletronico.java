@@ -8,6 +8,7 @@ public class CaixaEletronico {
 
     static double saldo = 1000;
     static String passCode;
+    static boolean menuSelectionContinue = true;
 
     public static void main(String[] args) {
 
@@ -16,7 +17,7 @@ public class CaixaEletronico {
 
         firstAccess(scanner);
 
-        while (true) {
+        while (menuSelectionContinue) {
 
             mainMenu(scanner, changesLog);
 
@@ -39,16 +40,16 @@ public class CaixaEletronico {
 
             if (pass1.equals(pass2)) {
                 passCode = pass1;
-                System.out.printf("%n%nSENHA DEFINIDA COM SUCESSO!%n%n");
+                System.out.printf("%n%nSENHA DEFINIDA COM SUCESSO!%n");
                 break;
             } else {
-                System.out.printf("%n%nAS SENHAS NÃO SÃO IGUAIS!%n%n");
+                System.out.printf("%n%nAS SENHAS NÃO SÃO IGUAIS!%n");
             }
         }
     }
 
     public static void mainMenu(Scanner scanner, ArrayList<Double> changesLog) {
-        System.out.printf("===== CAIXA ELETRÔNICO =====%n");
+        System.out.printf("%n===== CAIXA ELETRÔNICO =====%n");
         System.out.printf("1 - Ver saldo%n");
         System.out.printf("2 - Depositar%n");
         System.out.printf("3 - Sacar%n");
@@ -70,6 +71,9 @@ public class CaixaEletronico {
                 break;
             case 4:
                 viewTransactions();
+                break;
+            case 5:
+                menuSelectionContinue = false;
                 break;
             default:
                 System.out.printf("%n%nOpção inválida!%n%n");
