@@ -121,14 +121,7 @@ public class CaixaEletronico {
     }
 
     public static boolean authenticate(Scanner scanner) {
-        String currentPass;
         System.out.printf("%nAUTENTICAÇÃO%nDigite a sua senha: ");
-        currentPass = scanner.next();
-
-        if (currentPass.equals(passCode)) {
-            return true;
-        } else {
-            return false;
-        }
+        return scanner.next().equals(passCode);
     }
 }
