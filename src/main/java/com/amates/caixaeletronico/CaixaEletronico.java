@@ -80,15 +80,19 @@ public class CaixaEletronico {
     public static void viewBalance(Scanner scanner) {
         if (authenticate(scanner)) {
             System.out.printf("%n%nSALDO DA CONTA: R$ %.2f%n%n", saldo);
-        } else {
-            System.out.printf("%n%nAutenticação falhou.%n%n");
-        }
+        } else System.out.printf("%n%nAutenticação falhou.%n%n");
     }
 
 
     public static void creditBalance(Scanner scanner) {
+        if (authenticate(scanner)) {
+            System.out.printf("%n%nDEPÓSITO DE VALORES%n Digite o valor do depósito: ");
 
+            double valueToAdd = scanner.nextDouble();
+            saldo += valueToAdd;
 
+            System.out.printf("%nOPERAÇÃO EFETUADA COM SUCESSO. %nForam adicionados R$ %.2f e o novo saldo é R$ %.2f %n%n", valueToAdd, saldo);
+        } else System.out.printf("%nAutenticação falhou.%n%n");
     }
 
 
