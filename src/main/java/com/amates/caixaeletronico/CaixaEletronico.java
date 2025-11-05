@@ -47,9 +47,6 @@ public class CaixaEletronico {
         }
     }
 
-
-
-
     public static void mainMenu(Scanner scanner, ArrayList<Double> changesLog) {
         System.out.printf("===== CAIXA ELETRÔNICO =====%n");
         System.out.printf("1 - Ver saldo%n");
@@ -62,13 +59,21 @@ public class CaixaEletronico {
         int userChoice = scanner.nextInt();
 
         switch (userChoice) {
-
             case 1:
-
-
+                viewBalance();
+                break;
+            case 2:
+                creditBalance();
+                break;
+            case 3:
+                debitBalance();
+                break;
+            case 4:
+                viewTransactions();
+                break;
+            default:
+                System.out.printf("%n%nOpção inválida!%n%n");
         }
-
-
     }
 
     public static double viewBalance() {
