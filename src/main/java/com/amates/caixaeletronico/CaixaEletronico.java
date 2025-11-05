@@ -18,13 +18,10 @@ public class CaixaEletronico {
         firstAccess(scanner);
 
         while (menuSelectionContinue) {
-
             mainMenu(scanner, changesLog);
-
-
         }
 
-
+        scanner.close();
     }
 
     public static void firstAccess(Scanner scanner) {
@@ -61,16 +58,16 @@ public class CaixaEletronico {
 
         switch (userChoice) {
             case 1:
-                viewBalance();
+                viewBalance(scanner);
                 break;
             case 2:
-                creditBalance();
+                creditBalance(scanner);
                 break;
             case 3:
-                debitBalance();
+                debitBalance(scanner);
                 break;
             case 4:
-                viewTransactions();
+                viewTransactions(scanner);
                 break;
             case 5:
                 menuSelectionContinue = false;
@@ -80,33 +77,42 @@ public class CaixaEletronico {
         }
     }
 
-    public static double viewBalance() {
+    public static void viewBalance(Scanner scanner) {
 
-
-        return 0;
-    }
-
-
-    public static void creditBalance() {
 
 
     }
 
 
-    public static void debitBalance() {
+    public static void creditBalance(Scanner scanner) {
 
 
     }
 
-    public static void viewTransactions() {
+
+    public static void debitBalance(Scanner scanner) {
 
 
     }
 
-    public static boolean authenticate() {
+    public static void viewTransactions(Scanner scanner) {
 
 
-        return false;
+    }
+
+    public static boolean authenticate(Scanner scanner) {
+        String currentPass;
+
+        while(true){
+            System.out.printf("%nAUTENTICAÇÃO%nDigite a sua senha: ");
+            currentPass = scanner.next();
+
+            if(currentPass.equals(passCode)){
+                return true;
+            } else{
+                return false;
+            }
+        }
     }
 
 
