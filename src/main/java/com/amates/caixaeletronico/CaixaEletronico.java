@@ -78,9 +78,11 @@ public class CaixaEletronico {
     }
 
     public static void viewBalance(Scanner scanner) {
-
-
-
+        if (authenticate(scanner)) {
+            System.out.printf("%n%nSALDO DA CONTA: R$ %.2f%n%n", saldo);
+        } else {
+            System.out.printf("%n%nAutenticação falhou.%n%n");
+        }
     }
 
 
