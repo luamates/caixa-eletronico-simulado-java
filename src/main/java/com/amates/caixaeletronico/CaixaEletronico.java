@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class CaixaEletronico {
 
-
     static double saldo = 1000;
     static String passCode;
     static boolean menuSelectionContinue = true;
@@ -83,7 +82,6 @@ public class CaixaEletronico {
         } else System.out.printf("%n%nAutenticação falhou.%n%n");
     }
 
-
     public static void creditBalance(Scanner scanner) {
         if (authenticate(scanner)) {
             System.out.printf("%n%nDEPÓSITO DE VALORES%n Digite o valor do depósito: ");
@@ -95,31 +93,42 @@ public class CaixaEletronico {
         } else System.out.printf("%nAutenticação falhou.%n%n");
     }
 
-
     public static void debitBalance(Scanner scanner) {
+        if (authenticate(scanner)) {
+            System.out.printf("%n%nSAQUE DE VALORES%n Digite o valor do saque: ");
+            double valueToRemove = scanner.nextDouble();
 
+            if (saldo >= valueToRemove) {
+                saldo -= valueToRemove;
+                System.out.printf("%nOPERAÇÃO EFETUADA COM SUCESSO. %nForam sacados R$ %.2f e o novo saldo é R$ %.2f %n%n", valueToRemove, saldo);
+            } else System.out.printf("%nO saldo disponível é insuficiente para a operação.%n%n");
 
+        } else System.out.printf("%nAutenticação falhou.");
     }
 
     public static void viewTransactions(Scanner scanner) {
+
+
+
+
+
+
+
+
+
 
 
     }
 
     public static boolean authenticate(Scanner scanner) {
         String currentPass;
+        System.out.printf("%nAUTENTICAÇÃO%nDigite a sua senha: ");
+        currentPass = scanner.next();
 
-        while(true){
-            System.out.printf("%nAUTENTICAÇÃO%nDigite a sua senha: ");
-            currentPass = scanner.next();
-
-            if(currentPass.equals(passCode)){
-                return true;
-            } else{
-                return false;
-            }
+        if (currentPass.equals(passCode)) {
+            return true;
+        } else {
+            return false;
         }
     }
-
-
 }
