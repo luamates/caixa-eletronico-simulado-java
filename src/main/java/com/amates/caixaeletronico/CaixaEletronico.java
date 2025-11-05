@@ -60,10 +60,10 @@ public class CaixaEletronico {
                 viewBalance(scanner);
                 break;
             case 2:
-                creditBalance(scanner);
+                creditBalance(scanner, changesLog);
                 break;
             case 3:
-                debitBalance(scanner);
+                debitBalance(scanner, changesLog);
                 break;
             case 4:
                 viewTransactions(changesLog);
@@ -82,24 +82,26 @@ public class CaixaEletronico {
         } else System.out.printf("%n%nAutenticação falhou.%n%n");
     }
 
-    public static void creditBalance(Scanner scanner) {
+    public static void creditBalance(Scanner scanner, ArrayList<String> changesLog) {
         if (authenticate(scanner)) {
             System.out.printf("%n%nDEPÓSITO DE VALORES%n Digite o valor do depósito: ");
 
             double valueToAdd = scanner.nextDouble();
             saldo += valueToAdd;
+            addTransactions("Depósito", valueToAdd, changesLog);
 
             System.out.printf("%nOPERAÇÃO EFETUADA COM SUCESSO. %nForam adicionados R$ %.2f e o novo saldo é R$ %.2f %n%n", valueToAdd, saldo);
         } else System.out.printf("%nAutenticação falhou.%n%n");
     }
 
-    public static void debitBalance(Scanner scanner) {
+    public static void debitBalance(Scanner scanner, ArrayList<String> changesLog) {
         if (authenticate(scanner)) {
             System.out.printf("%n%nSAQUE DE VALORES%n Digite o valor do saque: ");
             double valueToRemove = scanner.nextDouble();
 
             if (saldo >= valueToRemove) {
                 saldo -= valueToRemove;
+                addTransactions("Saque", valueToRemove, changesLog);
                 System.out.printf("%nOPERAÇÃO EFETUADA COM SUCESSO. %nForam sacados R$ %.2f e o novo saldo é R$ %.2f %n%n", valueToRemove, saldo);
             } else System.out.printf("%nO saldo disponível é insuficiente para a operação.%n%n");
 
@@ -114,9 +116,8 @@ public class CaixaEletronico {
         System.out.printf("%nSALDO ATUAL: %.2f%n%n", saldo);
     }
 
-    public static void addTransactions(String transactionType, double transactionAmount) {
-
-
+    public static void addTransactions(String transactionType, double transactionAmount, ArrayList<String> changesLog) {
+        changesLog.add(transactionType + " | Valor: R$ " + transactionAmount);
     }
 
     public static boolean authenticate(Scanner scanner) {
