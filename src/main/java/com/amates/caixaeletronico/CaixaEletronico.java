@@ -11,7 +11,7 @@ public class CaixaEletronico {
 
     public static void main(String[] args) {
 
-        ArrayList<Double> changesLog = new ArrayList<>();
+        ArrayList<String> changesLog = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
         firstAccess(scanner);
@@ -44,14 +44,14 @@ public class CaixaEletronico {
         }
     }
 
-    public static void mainMenu(Scanner scanner, ArrayList<Double> changesLog) {
+    public static void mainMenu(Scanner scanner, ArrayList<String> changesLog) {
         System.out.printf("%n===== CAIXA ELETRÔNICO =====%n");
         System.out.printf("1 - Ver saldo%n");
         System.out.printf("2 - Depositar%n");
         System.out.printf("3 - Sacar%n");
         System.out.printf("4 - Extrato%n");
         System.out.printf("5 - Sair%n");
-        System.out.printf("Escolha uma opção: ");
+        System.out.println("Escolha uma opção: ");
 
         int userChoice = scanner.nextInt();
 
@@ -66,7 +66,7 @@ public class CaixaEletronico {
                 debitBalance(scanner);
                 break;
             case 4:
-                viewTransactions(scanner);
+                viewTransactions(changesLog);
                 break;
             case 5:
                 menuSelectionContinue = false;
@@ -106,16 +106,15 @@ public class CaixaEletronico {
         } else System.out.printf("%nAutenticação falhou.");
     }
 
-    public static void viewTransactions(Scanner scanner) {
+    public static void viewTransactions(ArrayList<String> changesLog) {
+        System.out.printf("%n%nEXTRATO DA CONTA%n");
+        for (int position = 0; position < changesLog.size(); position++) {
+            System.out.println(changesLog.get(position));
+        }
+        System.out.printf("%nSALDO ATUAL: %.2f%n%n", saldo);
+    }
 
-
-
-
-
-
-
-
-
+    public static void addTransactions(String transactionType, double transactionAmount) {
 
 
     }
